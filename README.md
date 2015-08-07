@@ -1,2 +1,2 @@
-# Flicker-api
-Flicker API - with Angular + Material Angular
+# Flickr-api
+Flickr API - with **Angular** + **Material Angular**
