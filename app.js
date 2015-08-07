@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('flickerApp', ['ngMaterial'])
+    angular.module('flickrApp', ['ngMaterial'])
         .controller('CTR', ['$scope', '$http', function($scope, $http) {
 
             $scope.isSearching = false;

@@ -1,10 +1,9 @@
-<!DOCTYPE hmtl>
+<!DOCTYPE html>
 
 <html>
 
 <head lang="en">
 	<meta charset="UTF-8">
-
 	<meta name="viewport"
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
@@ -13,45 +12,38 @@
 	<link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css"/>
 	<link rel="stylesheet" href="style.css"/>
 
-
 </head>
 
-<body ng-app="flickerApp" ng-controller="CTR" layout="column" layout-align="top center" >
+<body ng-app="flickrApp" ng-controller="CTR" layout="column" layout-align="top center" >
 
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<span class="md-felx">
+				Flickr Search
+			</span>
+		</div>
+	</md-toolbar>
 
+	<md-content layout="column" layout-align="center center">
+		<div class="app-content">
 
-		<md-toolbar>
-			<div class="md-toolbar-tools">
-				<span class="md-felx">
-					Flicker Search
-				</span>
+			<form ng-submit="search()">
+				<md-input-container ng-show="!isSearching">
+					<label>Search For</label>
+					<input ng-model="searchTerm">
+				</md-input-container>
+				<md-progress-circular ng-if="isSearching" class="md-accent md-hue-2" md-mode="indeterminate"></md-progress-circular>
+			</form>
+
+			<div ng-repeat="result in results.photos.photo">
+				<md-card>
+					<img src="https://farm{{result.farm}}.staticflickr.com/{{result.server}}//{{result.id}}_{{result.secret}}_b.jpg  " alt="" class="md-card-image"/>
+					<h3 style="padding: 0px 10px;"> {{ result.title }} </h3>
+				</md-card>
 			</div>
-		</md-toolbar>
+		</div>
 
-		<md-content layout="column" layout-align="center center">
-			<div class="app-content">
-
-				<form ng-submit="search()">
-					<md-input-container ng-show="!isSearching">
-						<label>Search For</label>
-						<input ng-model="searchTerm">
-					</md-input-container>
-					<md-progress-circular ng-if="isSearching" class="md-accent md-hue-2" md-mode="indeterminate"></md-progress-circular>
-
-				</form>
-
-				<div ng-repeat="result in results.photos.photo">
-					<md-card>
-						<img src="https://farm{{result.farm}}.staticflickr.com/{{result.server}}//{{result.id}}_{{result.secret}}_b.jpg  " alt="" class="md-card-image"/>
-						<h3> {{ result.title }} </h3>
-					</md-card>
-				</div>
-			</div>
-
-
-		</md-content>
-
-
+	</md-content>
 
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/angular-aria/angular-aria.min.js"></script>
